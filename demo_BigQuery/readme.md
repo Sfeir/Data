@@ -1,8 +1,8 @@
-##HOW TO -  BIGQUERY
+## HOW TO -  BIGQUERY
 
 The goal of this document is to show you how to use some tools of the Google Cloud SDK. More precisely, we will be using BigQuery, Compute Engine and Data Stduio. Moreover, we will use the GO language to build a program that retrieves tweets (via the Twitter API) and stores them in a BigQuery table.
 
-#Google Cloud SDK
+# Google Cloud SDK
 
 First of all, download the Google Cloud SDK available via this [link](https://cloud.google.com/sdk/docs/)
 
@@ -24,7 +24,7 @@ that allows you to link your account for any future request.
 
 At this stage, you have properly installed the Google Cloud SDK and linked your account and a project.
 
-#GO 
+# GO 
 
 Now to install the GO language type : 
 
@@ -65,7 +65,7 @@ When launching it, the program retrieves tweets according to the mask you precis
 Note that the credentials correspond to the Twitter API, you can get yours [here](https://apps.twitter.com/).
 
 
-#COMPUTE ENGINE
+# COMPUTE ENGINE
 
 The goal of this application is to retrieve tweets continuously. This is why Compute Engine is used, launching the GO program on Compute Engine will allow it to run as much as wanted.
 First go [there](https://console.cloud.google.com/) and go to the Compute Engine Section and then in VM instances. There, create a new instance Once created, connect to it by clicking the SSH button. 
@@ -111,7 +111,7 @@ and then look for the line ./finalTwitterBigQuery and the matching pid number. T
 
 $ kill pid_number
 
-#BIG QUERY and DATA STUDIO
+# BIG QUERY and DATA STUDIO
 
 Now that you have filled (or are filling) our BigQuery table. We will see how to use, query and showcase the stored data. BigQuery is a tool that allows querying data with SQL language requests.
 To access BigQuery, click on the BigQuery section of the Google Cloud Platform. Then write your query on the top of the screen. Once written, type Run Query to see the results. For example if ou want to query the table named GOT from DataSet Series you can write :
