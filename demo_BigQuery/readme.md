@@ -150,15 +150,15 @@ The last query returns the number of tweets containing “Arya” per day. We ca
 Finally, BigQuery allows similarity requests. For instance, on our table we can wonder what words are the mst associated with a character. This query :
 
 
-SELECT
-   upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) AS word,
-   COUNT(*) AS count
-FROM
-   (select Text,count(*) from (select * from Series.GOT where upper(Text) contains("SAM")) group by Text order by 2 desc)
-WHERE
-   not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("GAME") and not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("OF") and not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains ("THRONES") and not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("SAM")
-GROUP BY 1
-ORDER BY count DESC
-LIMIT 100;
+SELECT <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;upper(REGEXP\_EXTRACT(Text,r'\s+(\w*)\s+')) AS word, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;COUNT(\*) AS count <br/>
+FROM <br/>
+  &nbsp;&nbsp;&nbsp;&nbsp; (select Text,count(\*) from (select \* from Series.GOT where upper(Text) contains("SAM")) group by Text order by 2 desc) <br/>
+WHERE <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("GAME") and not upper(REGEXP\_EXTRACT(Text,r'\s+(\w\*)\s+')) contains("OF") and  <br/>&nbsp;&nbsp;&nbsp;&nbsp;not upper(REGEXP\_EXTRACT(Text,r'\s+(\w\*)\s+')) contains ("THRONES") and not upper(REGEXP\_EXTRACT(Text,r'\s+(\w\*)\s+')) contains("SAM") <br/>
+GROUP BY 1 <br/>
+ORDER BY count DESC <br/>
+LIMIT 100; <br/>
 
 allows to give the words that are the most associated with Sam. Indeed, this query has in its top results “TARLY” which is the last name of Sam in Game of Thrones.
