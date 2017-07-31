@@ -60,3 +60,7 @@ long)
 ### Models
 
 * [Python: OpenFace](http://cmusatyalab.github.io/openface/)
+
+## Comparisons & Benchmark
+
+* [A Comparison of Distributed Machine Learning Platforms](https://www.cse.buffalo.edu/~demirbas/publications/DistMLplat.pdf)
