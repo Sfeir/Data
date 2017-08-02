@@ -64,3 +64,7 @@ long)
 ## Comparisons & Benchmark
 
 * [A Comparison of Distributed Machine Learning Platforms](https://www.cse.buffalo.edu/~demirbas/publications/DistMLplat.pdf)
+
+# Neural style algorithm
+
+* [A Neural Algorithm of Artistic Style](https://arxiv.org/pdf/1508.06576.pdf)
