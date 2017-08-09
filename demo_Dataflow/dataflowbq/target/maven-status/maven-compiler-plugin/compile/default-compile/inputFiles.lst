@@ -1,0 +1,13 @@
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/common/ExampleOptions.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/PubSubToBigQueryJob.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/common/ExamplePubsubTopicAndSubscriptionOptions.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/common/WriteOneFilePerWindow.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/MinimalWordCount.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/Options.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/Tweet.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/common/ExamplePubsubTopicOptions.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/common/ExampleUtils.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/DebuggingWordCount.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/WindowedWordCount.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/common/ExampleBigQueryTableOptions.java
+/home/pyrom/dataflow/dataflowbq/src/main/java/com/example/WordCount.java
