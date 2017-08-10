@@ -1,0 +1,27 @@
+[
+    {
+        "mode": "REQUIRED",
+        "name": "Username",
+        "type": "STRING"
+    },
+    {
+        "mode": "REQUIRED",
+        "name": "Text",
+        "type": "STRING"
+    },
+    {
+        "mode": "NULLABLE",
+        "name": "Date",
+        "type": "STRING"
+    },
+    {
+        "mode": "NULLABLE",
+        "name": "Nb_Hashtags",
+        "type": "INTEGER"
+    },
+    {
+        "mode": "NULLABLE",
+        "name": "Language",
+        "type": "STRING"
+    }
+]

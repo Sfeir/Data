@@ -71,4 +71,34 @@ Note that the credentials correspond to the Twitter API, you can get yours [here
 
 # DATAFLOW
 
-Here, we will be using the Java:SDK 2.X as the Python SDK does not handle streaming //TODO.
+Here, we will be using the Java:SDK 2.X because (as I write these lines) the Python SDK does not handle streaming and therefore does not handle Data Late either (and those two parameters are of paramount importance in our demo).
+
+First of all, there is a very good way to start using DataFlow with this SDK by following the steps [here](https://cloud.google.com/dataflow/docs/quickstarts/quickstart-java-maven). If you need help installing or setting up java environment on your computer there is a good guide [here](https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-ubuntu-16-04).
+
+After those steps, you have successfully started you first DataFlow job and checked if everything went as planned. Note that this example is in batch mode whereas we will be showcasing a streaming case.
+
+The code corresponding to the DataFlow job in the file "dataflowbq". Note that for the job to run wihout any issues you should have created a PubSub topic, have subscribed to it and also have a table in BigQuery matching the "bigQueryTable_SeriesDataflow.GOT" description.
+
+To launch the DataFlow job just go to dataflowbq/ and type "$ bash launch.sh". Note that you can edit the launch.sh file to  change the name of the BigQuery Dataset, table, the name of the project, the PubSub Bucket name.... These parameters will be available through the Options class defined at dataflowbq/src/main/java/com/example/Options.java.
+
+Once launched, the pipeline will take approximately one minute to start working fine. You can either check it on the terminal or on the google cloud console online in the Dataflow section (just click on the name of your job and you will be able to see the acyclic graph corresponding to your pipeline). Each node of this graph represents one (or several) "apply" which correspond to a function you apply to the data you have collected or are collecting.
+
+For example in our case you can see in "dataflowbq/src/main/java/com/example/PubSubToBigQueryJob.java" file in the main that we first retrieve the data from PubSub with :
+
+PCollection<String> lines = p
+				.apply("Read from PubSub",PubsubIO.readStrings()
+                     		.withTimestampAttribute(TIMESTAMP_ATTRIBUTE)
+                        	.fromSubscription(options.getSubscription()));
+
+with p being the pipeline created just before. This ".apply" represents the first node of the acyclic graph.
+
+After retrieving this data, we map the String (sent via the GO program) to a Tweet (corresponds to "dataflowbq/src/main/java/com/example/Tweet.java" class). Now, on the one hand we push this data to a BigQuery table and on the other hand we apply windowing to the same data. This step corresponds to the separation in two nodes. Windowing allows to make calculations (like wordcounts) on unbounded sets of data. Indeed, for such sets of data, you do not know when the data is "finished" (it might actually never) o you have to window it in (for instance) windows of 4 minutes. It means that your unbounded data will be cut in 4 minutes batches. The following code allows windowing : 
+
+PCollection<Tweet> windowed = t1.apply("Windowing",Window.<Tweet>into(FixedWindows.of(Duration.standardMinutes(4))).withAllowedLateness(Duration.standardMinutes(5)).accumulatingFiredPanes());
+
+As we can see, this returns fixed windowed data of 4 minutes each with an allowed lateness time of 5 minutes. This allowed lateness corresponds to the time after which data can still be considrered as being part of a window even if it is late : this is is what is called Data Late. For example, if a window opens at 9:00 then it will close at 9:04. However, if a data arrives at 9:06 but with a timestamp between 9:00 and 9:04 then it will be considered as Data Late from this window. However if a data arrives at 9:15 but with a timestamp between 9:00 and 9:04 it will be discarded as it is beyond the allowed lateness (after the closure of a window).
+
+Moreover, Data Late can be dealt with by two main ways. The first one is by using ".accumulatingFiredPanes()" which means that when A Data LAte arrives it will be considered as part of the group with all the other data from its window (Late or not) whereas if you use ".discardingFiredPanes()" it will be considered as a single Data and will not be "merged" with the other data from its window.
+
+Finally, after windowing we retrieve the Hashtags from the tweets and count them. Then, if it is not Data Late we write it to GCP's Storage and if it is Data Late we log it. You can see the logs by clicking on logs and then on Stackdriver.
+                
