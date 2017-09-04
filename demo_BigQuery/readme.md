@@ -90,7 +90,7 @@ But if you launch it on the VM and then exit it, your program will also stop. Th
 $ crontab -l			list of current crons
 $ crontab -e			edit list of crons
 $ crontab -r			erase cron list
-```bash
+```
 For our usage, we just want to launch our GO program once. For that type :
 
 $ crontab -e
