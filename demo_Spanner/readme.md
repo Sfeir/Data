@@ -1,8 +1,8 @@
-## DEMO - SPANNER
+# DEMO - SPANNER
 
 The goal is to learn how to use Spanner from the Google Cloud Platform. More precisely, we will be using tweets stored in a BigQuery table and store them in Spanner tables in order to be able to follow, through time, the tweets per hashtag and the tweets per user.
 
-# BIGQUERY
+## BIGQUERY
 
 The first step is to create several spanner tables from one BigQuery table. For that purpose, we will create the tables in BigQuery (via SQL requests) and then export them as .csv files and then import them in Spanner. We will create four tables from the original table. The declaratio of these tables ca nbe found at /tables_bq. In order to fill these tables I used the following queries (in Standard SQL) : 
 
@@ -48,7 +48,7 @@ FROM (
 WHERE
   dup = 1
 ```
-# SPANNER
+## SPANNER
 
 Now that we have created the tables we wanted and stored them as .csv files we can import them to spanner. To do so, I followed the instructions (here)[https://www.youtube.com/watch?v=d-D_KgQ3L34].
 First, create an instance and a dataset in Spanner. Once done, create three tables which DDL can be found at /ddl. Once created you can import the tables from BigQuery to spanner. First, download the three last tables created in BigQuery as .csv on your computer in the folder /spannerimport. From /spannerimport just type :

@@ -1,8 +1,8 @@
-## HOW TO -  DATAFLOW
+# HOW TO -  DATAFLOW
 
 The goal of this document is to show you how to use some tools of the Google Cloud SDK. More precisely, we will be using DataFlow, PubSub and Storage. Moreover, we will use the GO language to build a program that retrieves tweets (via the Twitter API) and sends them to a PubSub topic. Then we retrieve the sent data and will apply some specific functions to this data in streaming mode.
 
-# Google Cloud SDK
+## Google Cloud SDK
 
 First of all, download the Google Cloud SDK available via this [link](https://cloud.google.com/sdk/docs/)
 
@@ -24,11 +24,11 @@ that allows you to link your account for any future request.
 
 At this stage, you have properly installed the Google Cloud SDK and linked your account and a project.
 
-# STORAGE
+## STORAGE
 
 We will be using Storage in for the Dataflow demonstrator. It is quite easy to use as you just have to create a bucket and then use it as if it were a local file on your computer (in terms of path).
 
-# GO 
+## GO 
 
 Now to install the GO language type : 
 ```bash
@@ -69,7 +69,7 @@ When launching it, the program retrieves tweets according to the mask you precis
 Note that the credentials correspond to the Twitter API, you can get yours [here](https://apps.twitter.com/).
 
 
-# DATAFLOW
+## DATAFLOW
 
 Here, we will be using the Java:SDK 2.X because (as I write these lines) the Python SDK does not handle streaming and therefore does not handle Data Late either (and those two parameters are of paramount importance in our demo).
 

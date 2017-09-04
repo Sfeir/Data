@@ -1,8 +1,8 @@
-## HOW TO -  BIGQUERY
+# HOW TO -  BIGQUERY
 
 The goal of this document is to show you how to use some tools of the Google Cloud SDK. More precisely, we will be using BigQuery, Compute Engine and Data Stduio. Moreover, we will use the GO language to build a program that retrieves tweets (via the Twitter API) and stores them in a BigQuery table.
 
-# Google Cloud SDK
+## Google Cloud SDK
 
 First of all, download the Google Cloud SDK available via this [link](https://cloud.google.com/sdk/docs/)
 
@@ -24,7 +24,7 @@ that allows you to link your account for any future request.
 
 At this stage, you have properly installed the Google Cloud SDK and linked your account and a project.
 
-# GO 
+## GO 
 
 Now to install the GO language type : 
 
@@ -65,7 +65,7 @@ When launching it, the program retrieves tweets according to the mask you precis
 Note that the credentials correspond to the Twitter API, you can get yours [here](https://apps.twitter.com/).
 
 
-# COMPUTE ENGINE
+## COMPUTE ENGINE
 
 The goal of this application is to retrieve tweets continuously. This is why Compute Engine is used, launching the GO program on Compute Engine will allow it to run as much as wanted.
 First go [there](https://console.cloud.google.com/) and go to the Compute Engine Section and then in VM instances. There, create a new instance Once created, connect to it by clicking the SSH button. 
@@ -111,7 +111,7 @@ and then look for the line ./finalTwitterBigQuery and the matching pid number. T
 
 $ kill pid_number
 
-# BIG QUERY and DATA STUDIO
+## BIG QUERY and DATA STUDIO
 
 Now that you have filled (or are filling) our BigQuery table. We will see how to use, query and showcase the stored data. BigQuery is a tool that allows querying data with SQL language requests.
 To access BigQuery, click on the BigQuery section of the Google Cloud Platform. Then write your query on the top of the screen. Once written, type Run Query to see the results. For example if ou want to query the table named GOT from DataSet Series you can write :
@@ -150,16 +150,17 @@ The last query returns the number of tweets containing “Arya” per day. We ca
 Finally, BigQuery allows similarity requests. For instance, on our table we can wonder what words are the mst associated with a character. This query :
 
 ```sql
-SELECT <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;upper(REGEXP\_EXTRACT(Text,r'\s+(\w*)\s+')) AS word, <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;COUNT(\*) AS count <br/>
-FROM <br/>
-  &nbsp;&nbsp;&nbsp;&nbsp; (select Text,count(\*) from (select \* from Series.GOT where upper(Text) contains("SAM")) group by Text order by 2 desc) <br/>
-WHERE <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("GAME") and not upper(REGEXP\_EXTRACT(Text,r'\s+(\w\*)\s+')) contains("OF") and  <br/>&nbsp;&nbsp;&nbsp;&nbsp;not upper(REGEXP\_EXTRACT(Text,r'\s+(\w\*)\s+')) contains ("THRONES") and not upper(REGEXP\_EXTRACT(Text,r'\s+(\w\*)\s+')) contains("SAM") <br/>
-GROUP BY 1 <br/>
-ORDER BY count DESC <br/>
-LIMIT 100; <br/>
+SELECT
+upper(REGEXP\_EXTRACT(Text,r'\s+(\w*)\s+')) AS word,
+COUNT(*) AS count
+FROM
+(select Text,count(*) from (select * from Series.GOT where upper(Text) contains("SAM")) group by Text order by 2 desc)
+WHERE 
+not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("GAME") and not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("OF") and
+not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains ("THRONES") and not upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) contains("SAM") 
+GROUP BY 1
+ORDER BY count DESC
+LIMIT 100; 
 ```
 
 allows to give the words that are the most associated with Sam. Indeed, this query has in its top results “TARLY” which is the last name of Sam in Game of Thrones.
