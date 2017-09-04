@@ -7,19 +7,19 @@ The goal of this document is to show you how to use some tools of the Google Clo
 First of all, download the Google Cloud SDK available via this [link](https://cloud.google.com/sdk/docs/)
 
 Then, as showed on this link :
-
+```bash
 $ ./google-cloud-sdk/install.sh
-
+```
 Open a new terminal so that the changes take effect and type :
-
+```bash
 $ gcloud init
 $ gcloud components update
-
+```
 that allows ou to initialize your account and update the SDK.
 Finally type : 
-
+```bash
 $ gcloud auth application-default login
-
+```
 that allows you to link your account for any future request.
 
 At this stage, you have properly installed the Google Cloud SDK and linked your account and a project.
@@ -31,36 +31,36 @@ Now to install the GO language type :
 $ sudo apt-get install golang
 
 Then, to setup the paths necessary for GO ad to your .profile :
-
+```bash
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go/src
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-
+```
 Now, if you want to create a new GO program, just create a new folder in $HOME/go/src. For instance, hello. Then, create a new file in that folder, for example hello.go.
 Type your code in that file (note that if you want is to be executable with a main, the package must be named main). Then, go to that folder and type :
-
+```bash
 $ go build
-
+```
 If there are no errors in your code, and there is a main function, this will create an executable named hello. You can launch it by typing by typing :
-
+```bash
 $ ./hello
-
+```
 We have not talked about the imports yet. In the GO language, you can import API or github projects. In order to use them, you have to type in the terminal :
-
+```bash
 $ go get cloud.google.com/go/bigquery 
-
+```
 in order to import the BigQuery API for the GO language . Note that to use it, you also have to write in your code :
 
 import (‘’cloud.google.com/go/bigquery‘’)
 
 Moreover, to import github projects, follow the same procedure. However, you must have git installed. To make sure it is the case type :
-
+```bash
 $ sudo apt-get install git
-
+```
 Now that, GO programs are clear you can launch the program retreiving tweets and pushing it to a BigQuery table. Copy the folder finalTwitterBigQuery to $HOME/go/src and follow the steps described before. Finally type :
-
+```bash
 $ ./finalTwitterBigQuery
-
+```
 When launching it, the program retrieves tweets according to the mask you precised in stream.go and pushes it to the BigQuery Table you indicated in stream.go. Note that you can create the BigQuery table in the code or manually via the [platform](https://console.cloud.google.com/) in the BigQuery section and by creating a DataSet and then a table.
 Note that the credentials correspond to the Twitter API, you can get yours [here](https://apps.twitter.com/).
 
@@ -72,25 +72,25 @@ First go [there](https://console.cloud.google.com/) and go to the Compute Engine
 You are now on the Virtual Machine that is under Debian distribution. Hence, the setting up of the GO language works like described before. To upload files from the computer to the VM, you can click on the top right corner of the screen and click Upload file.
 
 It is advised to work as root. For that type :
-
+```
 $ sudo -s
-
+```
 It is also important that you do not forget to type :
-
+```bash
 $ gcloud auth application-default login
-
+```
 Besides, do not forget to edit your .profile and make the go get for the imports.
 Now let us suppose you put the finalTwitterBigQuery file in /root/go/src. To launch it you just have to type :
-
+```bash
 $ cd /root/go/src/finalTwitterBigQuery
 $ ./finalTwitterBigQuery
-
+```
 But if you launch it on the VM and then exit it, your program will also stop. That is when crons are useful. They allow you to launch a command at a certain moment and/or at a given frequency. For that, we will use the crontab command : 
-
+```bash
 $ crontab -l			list of current crons
 $ crontab -e			edit list of crons
 $ crontab -r			erase cron list
-
+```bash
 For our usage, we just want to launch our GO program once. For that type :
 
 $ crontab -e
@@ -149,7 +149,7 @@ The last query returns the number of tweets containing “Arya” per day. We ca
 
 Finally, BigQuery allows similarity requests. For instance, on our table we can wonder what words are the mst associated with a character. This query :
 
-
+```sql
 SELECT <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;upper(REGEXP\_EXTRACT(Text,r'\s+(\w*)\s+')) AS word, <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;COUNT(\*) AS count <br/>
@@ -160,5 +160,6 @@ WHERE <br/>
 GROUP BY 1 <br/>
 ORDER BY count DESC <br/>
 LIMIT 100; <br/>
+```
 
 allows to give the words that are the most associated with Sam. Indeed, this query has in its top results “TARLY” which is the last name of Sam in Game of Thrones.

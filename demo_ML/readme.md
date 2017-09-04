@@ -7,19 +7,19 @@ The goal of this document is to show you how to use some tools of the Google Clo
 First of all, download the Google Cloud SDK available via this [link](https://cloud.google.com/sdk/docs/)
 
 Then, as showed on this link :
-
+```bash
 $ ./google-cloud-sdk/install.sh
-
+```
 Open a new terminal so that the changes take effect and type :
-
+```bash
 $ gcloud init
 $ gcloud components update
-
+```
 that allows ou to initialize your account and update the SDK.
 Finally type : 
-
+```bash
 $ gcloud auth application-default login
-
+```
 that allows you to link your account for any future request.
 
 At this stage, you have properly installed the Google Cloud SDK and linked your account and a project.
@@ -52,9 +52,9 @@ The notebook containing the behaviour described above is in "GOT_to_imageFromMet
 To go further and improve the matching we could build our own database of images from Game of Thrones. Of course, we would also need these images to be labelled in order to perform the matching described above. For that, the Google Cloud Vision API can be used. Among other things, this API allows labelling of images (from a link or locally). 
 
 To try this API first go to the "vision-api-google" folder and from there type :
-
+```bash
 $ python detect.py labels-uri IMAGE_URI
-
+```
 This will print the labels associated to the image found on the link.
 
 Finlly note that both Google Cloud Natural Language and Vision APIs are pre trained models that we use.

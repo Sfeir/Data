@@ -52,11 +52,12 @@ WHERE
 
 Now that we have created the tables we wanted and stored them as .csv files we can import them to spanner. To do so, I followed the instructions (here)[https://www.youtube.com/watch?v=d-D_KgQ3L34].
 First, create an instance and a dataset in Spanner. Once done, create three tables which DDL can be found at /ddl. Once created you can import the tables from BigQuery to spanner. First, download the three last tables created in BigQuery as .csv on your computer in the folder /spannerimport. From /spannerimport just type :
-
+```bash
 $ python import.py --instance_id=tweets --database_id=got --table_id=tweet_by_hashtag --batchsize=6000 --data_file=tweet_by_hashtag.csv --format_file=hashtag_table.fmt
-
+```
 For example, this will fill the tweet_by_hashtag table in spanner. The format_file describes the format of your table. Note that you have to remove the first line of your .csv files (name of the columns). The batchsize is the number of rows sent per batch. The maximum size is 100 MB or 20 000 mutations (the nuber of mutation being the number of rows X the number of columns). So if your table contains three columns you can put a batchsize of 6 666 (if it does not exceed 100 MB).
 
 Now that the spanner tables are filled, we can query them and display the number of tweets for a hashtag or for a user throughout time. Five queries are written in the Python script spanner.py, queries 3 and 5 display what we want. To launch the script and display the graph, type :
-
-python spanner.py
+```bash
+$ python spanner.py
+```
