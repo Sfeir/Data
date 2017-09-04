@@ -1,0 +1,3 @@
+0,tweet_id,integer
+1,date,string
+2,text,string

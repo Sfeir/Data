@@ -1,0 +1,7 @@
+0,importid,integer
+1,strCol,string
+2,byteCol,bytes
+3,dateCol,date
+4,tsCol,timestamp
+5,intCol,integer
+6,floatCol,float
