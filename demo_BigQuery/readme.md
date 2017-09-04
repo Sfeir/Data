@@ -104,20 +104,20 @@ which means that finalTwitterBigQuery will be launched on Thursday 27th of July 
 You can now exit the VM and wait the launch of your program, you can check if it is working by querying the BigQuery table you are filling and check if the number of rows is growing (select count(*) from dataset_name.table_name). 
 
 When you want to stop the program, just open the VM (by clicking on the SSH button like before) and then type :
-
+```bash
 $ ps -aux
-
+```
 and then look for the line ./finalTwitterBigQuery and the matching pid number. Then type :
-
+```bash
 $ kill pid_number
-
+```
 ## BIG QUERY and DATA STUDIO
 
 Now that you have filled (or are filling) our BigQuery table. We will see how to use, query and showcase the stored data. BigQuery is a tool that allows querying data with SQL language requests.
 To access BigQuery, click on the BigQuery section of the Google Cloud Platform. Then write your query on the top of the screen. Once written, type Run Query to see the results. For example if ou want to query the table named GOT from DataSet Series you can write :
-
+```sql
 SELECT count(*) from Series.GOT
-
+```
 that will give you the number of rows you have in this table.
 
 There is a button « Show options » that allows you (among other things) to query without using cached results. That can be helpful if your table is still being filled.  On the same line as this button on the very right there is a button you can click on that will help you for your queries. Indeed, if there is an error in your query it well tell you what is wrong and if the query is correct it will tell you the amount of data it will process.
@@ -127,13 +127,13 @@ On the other hand, Data Studio allows to represent your data in an easy way. Fir
 However, for more complicated graphs, you first have to query the table on BigQuery, save the view and finally connect the view in Data Studio and plot what you wanted to show.
 
 For example, if you want to show the 10 most retweeted tweets in our table, first query in BigQuery:  
-
+```sql
 select Text, count(*) from Series.GOT group by Text order by 2 desc limit 10
-
+```
 then click on “Save View” and name it (for example 10_MAX_RT). Then, all you have to do is going to Data Studio and connect to the view you just created and (dor instance) plot a pie chart.
 
 These are some other interesting queries on the table GOT :
-
+```sql
 1. select Text, count(*) from Series.GOT group by Text order by 2 desc
 
 2. select count(*) as nb_tweets,Language from Series.GOT group by Language order by 1 desc
@@ -141,7 +141,7 @@ These are some other interesting queries on the table GOT :
 3. select count(*) as nb_tweets,Language from Series.GOT where Language != "en" group by Language order by 1 desc
 
 4. select count(*) as nb_tweets,left(Date,10) from (select * from Series.GOT where upper(Text) contains("ARYA")) group by 2 
-
+```
 The first one allows to display the most popular tweets (the ones that have been the most retweeted).
 The second query returns the number of tweets per language, which allows to plot a very nice pie chart in Data Studio that displays the repartition of languages.
 The third query is very similar to the second one as we have just removed the English language (because it was too much represented and thus was giving a less readable pie chart).
