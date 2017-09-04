@@ -1,0 +1,5 @@
+CREATE TABLE tweet (
+	tweet_id INT64 NOT NULL,
+	date STRING(MAX) NOT NULL,
+	text STRING(MAX) NOT NULL,
+) PRIMARY KEY (tweet_id)

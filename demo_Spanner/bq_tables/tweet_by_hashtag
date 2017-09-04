@@ -1,0 +1,12 @@
+[
+    {
+        "mode": "REQUIRED",
+        "name": "hashtag",
+        "type": "STRING"
+    },
+    {
+        "mode": "REQUIRED",
+        "name": "tweet_id",
+        "type": "INTEGER"
+    }
+]

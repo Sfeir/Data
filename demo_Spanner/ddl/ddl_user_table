@@ -1,0 +1,4 @@
+CREATE TABLE tweet_by_user (
+	tweet_id INT64 NOT NULL,
+	username STRING(MAX) NOT NULL,
+) PRIMARY KEY (tweet_id)

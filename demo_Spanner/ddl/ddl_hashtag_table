@@ -1,0 +1,4 @@
+CREATE TABLE tweet_by_hashtag (
+	hashtag STRING(MAX) NOT NULL,
+	tweet_id INT64 NOT NULL,
+) PRIMARY KEY (hashtag, tweet_id)

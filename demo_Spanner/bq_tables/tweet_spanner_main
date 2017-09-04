@@ -1,0 +1,27 @@
+[
+    {
+        "mode": "REQUIRED",
+        "name": "user",
+        "type": "STRING"
+    },
+    {
+        "mode": "REQUIRED",
+        "name": "date",
+        "type": "STRING"
+    },
+    {
+        "mode": "REQUIRED",
+        "name": "tweet",
+        "type": "STRING"
+    },
+    {
+        "mode": "REPEATED",
+        "name": "hashtags",
+        "type": "STRING"
+    },
+    {
+        "mode": "REQUIRED",
+        "name": "tweet_id",
+        "type": "INTEGER"
+    }
+]
