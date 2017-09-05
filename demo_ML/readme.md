@@ -1,4 +1,4 @@
-# HOW TO -  TENSOR FLOW - ML
+# HOW TO - ML
 
 The goal of this document is to show you how to use some tools of the Google Cloud SDK. More precisely, we will be using Dataprep (Beta), DataLab, the Google Cloud Natural Language API and the Google CLoud Vision API. The goal is to match a tweet from Game of Thrones (from a BigQuery Table) and match it with an image from The Metropolitan Museum of Art (information retrieved from a public dataset).
 
