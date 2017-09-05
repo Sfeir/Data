@@ -103,6 +103,14 @@ which means that finalTwitterBigQuery will be launched on Thursday 27th of July 
 
 You can now exit the VM and wait the launch of your program, you can check if it is working by querying the BigQuery table you are filling and check if the number of rows is growing (select count(*) from dataset_name.table_name). 
 
+Another solution is to launch it with 'nohup' typing :
+
+```bash
+$ nohup ./finalTwitterBigQuery &
+```
+Note that you have to exit the VM by typing exit (twice as you are logged in as root).
+
+
 When you want to stop the program, just open the VM (by clicking on the SSH button like before) and then type :
 ```bash
 $ ps -aux
@@ -126,7 +134,7 @@ On the other hand, Data Studio allows to represent your data in an easy way. Fir
 
 However, for more complicated graphs, you first have to query the table on BigQuery, save the view and finally connect the view in Data Studio and plot what you wanted to show.
 
-For example, if you want to show the 10 most retweeted tweets in our table, first query in BigQuery:  
+For example, if you want to show the 10 most retweeted tweets in our table, first query in BigQuery:
 ```sql
 select Text, count(*) from Series.GOT group by Text order by 2 desc limit 10
 ```
