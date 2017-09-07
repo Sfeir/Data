@@ -159,7 +159,7 @@ Finally, BigQuery allows similarity requests. For instance, on our table we can 
 
 ```sql
 SELECT
-upper(REGEXP\_EXTRACT(Text,r'\s+(\w*)\s+')) AS word,
+upper(REGEXP_EXTRACT(Text,r'\s+(\w*)\s+')) AS word,
 COUNT(*) AS count
 FROM
 (select Text,count(*) from (select * from Series.GOT where upper(Text) contains("SAM")) group by Text order by 2 desc)
