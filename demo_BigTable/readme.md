@@ -1,8 +1,8 @@
-## DEMO - BIGTABLE
+# DEMO - BIGTABLE
 
 The goal is to learn how to use Big Table from the Google Cloud Platform. More precisely, we will be using tweets stored in a BigQuery table and store them in Big Table tables in order to be able to follow, through time, the tweets per hashtag and the tweets per user.
 
-# BIG TABLE
+## BIG TABLE
 
 Big Table is a very scalable and fast tool for querying huge databases. However, it is fast (around a millisecond for a query) when you choose the row key for your table wisely. It is often said that you build a table in Big Table for a specific query as you will choose the appropriate row key for one query. You can find more information about the schema design (here)[https://cloud.google.com/bigtable/docs/schema-design] and (here)[https://cloud.google.com/bigtable/docs/schema-design-time-series].
 
@@ -35,7 +35,7 @@ $ cbt createfamily got data
 
 At this stage, we have created the Big Table instance with a table with one column family. Now, in order to transfer the tweets from Big Query to Big Table we will use a Dataflow job.
 		
-# DATAFLOW
+## DATAFLOW
 
 The code is in dataflowbqbt and to launch it :
 ```bash
@@ -56,7 +56,7 @@ Finally, you can display the tweets of a user at a certain date by querying the 
 $ cbt read got prefix="Nananona"
 ```
 
-# BIG QUERY
+## BIG QUERY
 
 Another way of querying data from a Big Table table is from Big Query using an external table (also known as "Federated table"). To do so go in the Big Query section of the GCP console and click on "create new table". For Location choose "Google Cloud Bigtable" and put as source "https://googleapis.com/bigtable/projects/sfeir-data/instances/tweets/tables/got". Then choose a dataset destination and put a table name. In column families  click on "Edit as Text" and paste the content of the file "GOT\_bt\_table\_description". Finally, check the two boxes at the end. Finally, click on "create table". Then, you can query this table which will actually query Big Table. For example if you want the number of tweets per user (in standard SQL) :
 ```sql
