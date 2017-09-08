@@ -1,0 +1,28 @@
+[
+    {
+        "familyId": "data",
+        "type": "BYTES",
+        "encoding": "BINARY",
+        "onlyReadLatest": false,
+        "columns": [
+            {
+                "qualifierString": "Username",
+                "type": "STRING",
+                "encoding": "BINARY",
+                "onlyReadLatest": false
+            },
+            {
+                "qualifierString": "Text",
+                "type": "STRING",
+                "encoding": "BINARY",
+                "onlyReadLatest": false
+            },
+            {
+                "qualifierString": "Date",
+                "type": "STRING",
+                "encoding": "BINARY",
+                "onlyReadLatest": false
+            }
+        ]
+    }
+]
