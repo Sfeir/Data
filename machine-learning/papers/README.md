@@ -4,6 +4,15 @@
 
 * [Machine Learning is Fun!](https://medium.com/@ageitgey/machine-learning-is-fun-80ea3ec3c471)
 
+## RNN (Recurrent neural network)
+
+* [A Neural Conversational Model](https://arxiv.org/pdf/1506.05869.pdf)
+* [Deep Visual-Semantic Alignments for Generating Image Descriptions](http://cs.stanford.edu/people/karpathy/cvpr2015.pdf)
+
+## DCGAN (Deep Convolutional Generative Adversarial Networks)
+
+* [Unsupervised representation learning with deep convolutional generative adversarial networks](https://arxiv.org/pdf/1511.06434.pdf)
+
 ## Computer Vision
 
 ### Dataset
@@ -18,8 +27,6 @@ long)
   * the definition of atomic visual actions, which avoids collecting data for each and every complex action
   * precise spatio-temporal annotations with possibly multiple annotations for each human
   * the use of diverse, realistic video material (movies)
-
-
 
 ### Meta-architecture & feature extractor
   
