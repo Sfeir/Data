@@ -76,7 +76,7 @@ Platform. New Cloud Platform users may be eligible for a [free trial](http://clo
 To clone the GitHub repository to your computer, run the following command:
 
 ```
-git clone https://github.com/XXXX
+git clone https://github.com/Sfeir/Data/tree/master/sentiment
 ```
 
 Go to the `sentiment` directory. The exact path
@@ -116,7 +116,7 @@ Download and install [Sirocco](https://github.com/datancoffee/sirocco), a framew
 
 * Download the latest [Sirocco Java framework](https://github.com/datancoffee/sirocco/releases/) 1.0.6 jar file.
 
-* Download the latest [Sirocco model](https://gist.github.com/datancoffee/sirocco-mo/releases/) 1.0.3 jar file.
+* Download the latest [Sirocco model](https://github.com/datancoffee/sirocco-mo/releases/) 1.0.3 jar file.
 
 * Go to the directory where the downloaded sirocco-sa-1.0.6.jar and sirocco-mo-1.0.3.jar files are located.
 
@@ -156,7 +156,7 @@ mvn install:install-file \
 
 ```
 cd ..
-scripts/run_controljob.sh &
+scripts/run_indexerjob.sh &
 ```
 
 #### Run a verification job
